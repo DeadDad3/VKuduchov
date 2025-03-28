@@ -1,0 +1,15 @@
+{
+    "manifest_version": 3,
+    "name": "VK Simple Muter",
+    "version": "1.0",
+    "description": "Скрывает сообщения от указанных пользователей на VK",
+    "permissions": [],
+    "content_scripts": [
+      {
+        "matches": ["https://vk.com/*"],
+        "js": ["content.js"],
+        "run_at": "document_end"
+      }
+    ]
+  }
+  
