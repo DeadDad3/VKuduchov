@@ -1,15 +1,29 @@
 {
-    "manifest_version": 3,
-    "name": "VK Simple Muter",
-    "version": "1.0",
-    "description": "Скрывает сообщения от указанных пользователей на VK",
-    "permissions": [],
-    "content_scripts": [
-      {
-        "matches": ["https://vk.com/*"],
-        "js": ["content.js"],
-        "run_at": "document_end"
-      }
-    ]
-  }
-  
+  "manifest_version": 3,
+  "name": "VKudukhov",
+  "version": "1.0",
+  "description": "Мут пользователей в беседах ВК",
+  "permissions": ["storage"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "VKudukhov",
+    "default_icon": {
+      "16": "icon.png",
+      "32": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    }
+  },
+  "icons": {
+    "16": "icon.png",
+    "32": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://vk.com/im*"],
+      "js": ["content.js"]
+    }
+  ]
+}
