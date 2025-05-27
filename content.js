@@ -16,12 +16,18 @@ function extractVkId(input) {
 function isTargetForMute(senderName, senderId, convoId) {
   return muteConfig.some(entry => {
     const expectedId = extractVkId(entry.userId || "");
-    const matchesName = entry.name && entry.name === senderName;
-    const matchesId = entry.userId ? expectedId === senderId : true;
     const matchesConvo = entry.allConvos || (entry.convoIds?.split(',').map(id => id.trim()).includes(convoId));
-    return matchesName && matchesId && matchesConvo;
+
+    // Если указан ID — сверяем только по ID
+    if (entry.userId) {
+      return expectedId === senderId && matchesConvo;
+    }
+
+    // Иначе сверяем по имени
+    return entry.name && entry.name === senderName && matchesConvo;
   });
 }
+
 
 function hideMessages() {
   const convoId = getCurrentConvoId();
